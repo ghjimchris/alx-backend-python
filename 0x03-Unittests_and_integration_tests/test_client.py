@@ -45,13 +45,13 @@ class TestGithubOrgClient(TestCase):
         """ Test for `public_repos_url` """
         payload = {
             'paylooad': True,
-            'repos_url': 'https://github.com/aprotee'
+            'repos_url': 'https://github.com/ghjimchris'
         }
         with patch('test_client.GithubOrgClient.org',
                    new_callable=PropertyMock) as mock_org:
             mock_org.return_value = Mock()
             mock_org.return_value = payload
-            git = GithubOrgClient('aprotee')
+            git = GithubOrgClient('ghjimchris')
             self.assertEqual(git._public_repos_url,
                              payload['repos_url'])
 
@@ -66,7 +66,7 @@ class TestGithubOrgClient(TestCase):
         mock_get_json.return_value = payload
         with patch('test_client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock) as mock_pru:
-            mock_pru.return_value = 'https://github.com/aprotee'
+            mock_pru.return_value = 'https://github.com/ghjimchris'
             git = GithubOrgClient('Aphrotee')
             self.assertListEqual(git.public_repos(),
                                  [
@@ -82,7 +82,7 @@ class TestGithubOrgClient(TestCase):
     ])
     def test_has_license(self, repo, license_key, response):
         """ Test for `has_license` """
-        git = GithubOrgClient('aphrotee')
+        git = GithubOrgClient('ghjimchris')
         self.assertEqual(git.has_license(repo, license_key), response)
 
 
